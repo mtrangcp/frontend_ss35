@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.formAdd {
+    margin-top: 20px;
+}
+
+.btn-add {
+    border: none;
+    padding: 5px 20px;
+    margin-top: 10px;
+    border-radius: 7px;
+    background-color: rgb(79, 79, 79);
+    color: white;
+}
+
+.btn-add:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+input {
+    width: 300px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 7px;
+    padding-left: 10px;
+}
+
+.table-container {
+    width: 90%;
+    margin: 10px auto;
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+.table {
+    width: 100%;
+    border: 1;
+}
+
+.listButton {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btnPerPage {
+    border: 1px solid rgb(38, 167, 253);
+    color: rgb(38, 167, 253);
+    padding: 4px 8px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.btnPerPage:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.btn-active {
+    background-color: rgb(21, 118, 183);
+    color: white;
+    font-weight: 600;
+}
+
+th {
+    background-color: rgb(226, 226, 226);
+    padding: 5px 0;
+}
+
+td {
+    padding: 5px 0;
+}
+
+#listBtnPage {
+    display: flex;
+    gap: 5px;
+}
+
+.btnPerPage:disabled {
+    background-color: #a3a3a3;
+    cursor: not-allowed;
+    color: white;
+    opacity: 0.6;
+}

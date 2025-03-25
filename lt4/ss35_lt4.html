@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ss35 lt4</title>
+    <link rel="stylesheet" href="ss35_lt4.css" />
+  </head>
+  <body>
+    <h3>Danh sách nhân viên</h3>
+    <form action="#" class="formAdd">
+      <div>
+        <input type="text" placeholder="Tên" id="userName" />
+        <input type="text" placeholder="Chức vụ" id="role" />
+      </div>
+      <button id="btnAdd" class="btn-add">Thêm nhân viên</button>
+    </form>
+
+    <div class="table-container">
+      <table class="table">
+        <thead class="table-light">
+          <th>STT</th>
+          <th>Tên</th>
+          <th>Chức vụ</th>
+        </thead>
+        <tbody id="listData">
+          <!-- <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr> -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="listButton">
+      <button type="button" class="btnPerPage" id="btnPre">Previous</button>
+      <div id="listBtnPage">
+        <!-- <button type="button" class="btnPerPage">1</button> -->
+      </div>
+      <button type="button" class="btnPerPage" id="btnNext">Next</button>
+    </div>
+
+    <script>
+      let inputName = document.querySelector("#userName");
+      let inputRole = document.querySelector("#role");
+      let btnAdd = document.querySelector("#btnAdd");
+      let listData = document.querySelector("#listData");
+      let arrUsers = [
+        { id: 1, name: "Nguyen Van A", role: "dev" },
+        { id: 2, name: "Nguyen Van b", role: "design" },
+        { id: 3, name: "Nguyen Van c", role: "manage" },
+      ];
+      let btnPerPages = document.querySelector("#listBtnPage");
+      let btnPre = document.querySelector("#btnPre");
+      let btnNext = document.querySelector("#btnNext");
+
+      let currPage = 1;
+      let totalPerPage = 5;
+      let totalRecord = arrUsers.length;
+
+      let totalPages = Math.ceil(totalRecord / totalPerPage);
+
+      const renderData = () => {
+        listData.innerHTML = "";
+        // hien thi table
+        const start = (currPage - 1) * totalPerPage;
+        const end = totalPerPage * currPage;
+
+        const result = arrUsers.slice(start, end);
+
+        let htmls = result.map((item, index) => {
+          return `
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.role}</td>
+                </tr>
+            `;
+        });
+        let convertArr = htmls.join("");
+        listData.innerHTML = convertArr;
+      };
+
+      renderData();
+      const renderPages = () => {
+        btnPerPages.innerHTML = "";
+        totalRecord = arrUsers.length;
+        totalPages = Math.ceil(totalRecord / totalPerPage);
+        // xu ly button page
+        for (let i = 1; i <= totalPages; i++) {
+          const btnElement = document.createElement("button");
+          btnElement.classList.add("btnPerPage");
+          btnElement.textContent = i;
+
+          if (currPage === i) {
+            btnElement.classList.add("btn-active");
+          }
+
+          btnElement.addEventListener("click", function () {
+            currPage = i;
+            renderPages();
+            renderData();
+          });
+
+          btnPerPages.appendChild(btnElement);
+        }
+        btnPre.disabled = currPage === 1;
+        btnNext.disabled = currPage === totalPages;
+      };
+      renderPages();
+
+      btnPre.addEventListener("click", function (params) {
+        console.log("click pre");
+
+        if (currPage > 1) {
+          currPage--;
+          renderPages();
+          renderData();
+        }
+      });
+
+      btnNext.addEventListener("click", function (params) {
+        console.log("click next");
+
+        if (currPage < totalPages) {
+          currPage++;
+          renderPages();
+          renderData();
+        }
+      });
+
+      btnAdd.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        let valueName = inputName.value.trim();
+        let valueRole = inputRole.value.trim();
+
+        if (valueName && valueRole) {
+          let objUser = {
+            id: arrUsers.length + 1,
+            name: valueName,
+            role: valueRole,
+          };
+
+          arrUsers.push(objUser);
+
+          localStorage.setItem("ss35Lt4", JSON.stringify(arrUsers));
+
+          renderData();
+          renderPages();
+        } else {
+          alert("Dữ liệu rỗng");
+        }
+      });
+    </script>
+  </body>
+</html>
