@@ -150,7 +150,7 @@
             <div class="mb-3">
               <label class="form-label">Mã danh mục</label>
               <input type="text" id="codeEdit" class="form-control" />
-              <small id="codeError" class="error-text d-none">
+              <small id="codeErrorEdit" class="error-text d-none">
                 Mã danh mục không được để trống
               </small>
             </div>
@@ -158,7 +158,7 @@
             <div class="mb-3">
               <label class="form-label">Tên danh mục</label>
               <input type="text" id="nameEdit" class="form-control" />
-              <small id="nameError" class="error-text d-none">
+              <small id="nameErrorEdit" class="error-text d-none">
                 Tên danh mục không được để trống
               </small>
             </div>
@@ -168,14 +168,14 @@
               <div>
                 <input
                   type="radio"
-                  id="active"
+                  id="activeEdit"
                   name="statusEdit"
                   value="active"
                 />
                 <label for="active">Đang hoạt động</label>
                 <input
                   type="radio"
-                  id="inactive"
+                  id="inactiveEdit"
                   name="statusEdit"
                   value="inactive"
                   class="ms-3"
@@ -192,11 +192,7 @@
               >
                 Hủy
               </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                onclick="addCategory()"
-              >
+              <button type="button" class="btn btn-primary" id="editItem">
                 Lưu thay đổi
               </button>
             </div>

@@ -20,6 +20,8 @@ let cateName = document.querySelector("#name");
 let valueId = cateId.value?.trim();
 let valueName = cateName.value?.trim();
 
+let btnEditItem = document.querySelector("#editItem");
+let indexEdit = -1;
 
 cateId.addEventListener("input", function () {
     valueId ? errID.classList.add("d-none") : errID.classList.remove("d-none");
@@ -89,7 +91,50 @@ function delItem(index) {
     }
 }
 
-function editItem(index) {
+let cateIdEdit = document.querySelector("#codeEdit");
+let cateNameEdit = document.querySelector("#nameEdit");
 
+function editItem(index) {
+    indexEdit = index;
+    cateIdEdit.value = arrCategories[index].id;
+    cateNameEdit.value = arrCategories[index].name;
+
+    arrCategories[index].status
+        ? document.getElementById("activeEdit").checked = true
+        : document.getElementById("inactiveEdit").checked = true;
 }
+btnEditItem.addEventListener("click", function () {
+    let valueIdEdit = cateIdEdit.value?.trim();
+    let valueNameEdit = cateNameEdit.value?.trim();
+    let errIDEdit = document.querySelector("#codeError");
+    let errNameEdit = document.querySelector("#nameError");
+
+    cateIdEdit.addEventListener("input", function () {
+        valueIdEdit ? errIDEdit.classList.add("d-none") : errID.classList.remove("d-none");
+    })
+    cateNameEdit.addEventListener("input", function () {
+        valueNameEdit ? errNameEdit.classList.add("d-none") : errID.classList.remove("d-none");
+    })
+
+    if (valueIdEdit && valueNameEdit) {
+        let valueStatusEdit = document.getElementById("activeEdit").checked ? true : false;
+
+        let objCat = {
+            id: valueIdEdit,
+            name: valueNameEdit,
+            status: valueStatusEdit
+        }
+
+        arrCategories[indexEdit] = objCat;
+        localStorage.setItem("arrCategories", JSON.stringify(arrCategories));
+        renderData();
+
+        let modalElement = document.querySelector("#modalEditCategory");
+        let modalInstance = bootstrap.Modal.getInstance(modalElement);
+        modalInstance.hide();
+    } else {
+        valueIdEdit ? errID.classList.add("d-none") : errID.classList.remove("d-none");
+        valueNameEdit ? errName.classList.add("d-none") : errName.classList.remove("d-none");
+    }
+});
 
