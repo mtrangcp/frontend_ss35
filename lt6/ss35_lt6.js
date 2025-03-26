@@ -11,6 +11,7 @@ let arrCategories = JSON.parse(localStorage.getItem("arrCategories")) ||
     ];
 
 let listData = document.querySelector("#listData");
+let select = document.querySelector("#selectStatus");
 
 let errID = document.querySelector("#codeError");
 let errName = document.querySelector("#nameError");
@@ -18,12 +19,14 @@ let errName = document.querySelector("#nameError");
 let cateId = document.querySelector("#code");
 let cateName = document.querySelector("#name");
 
+
 let btnEditItem = document.querySelector("#editItem");
 let indexEdit = -1;
 
-const renderData = () => {
+const renderData = (arr) => {
+    // listData.innerHTML = "";
 
-    listData.innerHTML = arrCategories.map((item, index) => {
+    listData.innerHTML = arr.map((item, index) => {
         return `
             <tr>
                 <td>${item.id}</td>
@@ -44,7 +47,18 @@ const renderData = () => {
         `;
     }).join("");
 }
-renderData();
+renderData(arrCategories);
+
+select.addEventListener("change", function () {
+    let newArr = [];
+
+    if (select.value === "true") {
+        newArr = arrCategories.filter(item => item.status === true);
+    } else {
+        newArr = arrCategories.filter(item => item.status === false);
+    }
+    renderData(newArr);
+})
 
 cateId.addEventListener("input", function () {
     cateId.value.trim() ? errID.classList.add("d-none") : errID.classList.remove("d-none");
@@ -68,12 +82,11 @@ function addCategory() {
 
             arrCategories.push(objCat);
             localStorage.setItem("arrCategories", JSON.stringify(arrCategories));
-            renderData();
+            renderData(arrCategories);
 
             cateId.value = "";
             cateName.value = "";
             document.getElementById("active").checked = true;
-
         } else {
             errName.classList.remove("d-none");
         }
@@ -88,14 +101,14 @@ function delItem(index) {
     if (check) {
         arrCategories.splice(index, 1);
         localStorage.setItem("arrCategories", JSON.stringify(arrCategories));
-        renderData();
+        renderData(arrCategories);
     }
 }
 
 let cateIdEdit = document.querySelector("#codeEdit");
 let cateNameEdit = document.querySelector("#nameEdit");
-let errIDEdit = document.querySelector("#codeError");
-let errNameEdit = document.querySelector("#nameError");
+let errIDEdit = document.querySelector("#codeErrorEdit");
+let errNameEdit = document.querySelector("#nameErrorEdit");
 
 cateIdEdit.addEventListener("input", function () {
     cateIdEdit.value.trim() ? errIDEdit.classList.add("d-none") : errIDEdit.classList.remove("d-none");
@@ -129,7 +142,7 @@ btnEditItem.addEventListener("click", function () {
 
             arrCategories[indexEdit] = objCat;
             localStorage.setItem("arrCategories", JSON.stringify(arrCategories));
-            renderData();
+            renderData(arrCategories);
 
             let modalElement = document.querySelector("#modalEditCategory");
             let modalInstance = bootstrap.Modal.getInstance(modalElement);
@@ -138,9 +151,11 @@ btnEditItem.addEventListener("click", function () {
         } else {
             errNameEdit.classList.remove("d-none");
         }
-
     } else {
         errIDEdit.classList.remove("d-none");
     }
 });
+
+
+
 
