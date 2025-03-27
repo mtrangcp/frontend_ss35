@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ss35 lt2</title>
+    <link rel="stylesheet" href="ss35_lt2.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="btnAdd">ADD BOOKMARK</div>
+
+      <div class="listData">
+        <!-- <div class="item">
+          <p class="icon-close"><span onclick="delItem()">✖︎</span></p>
+
+          <div class="item-data">
+            <a href="https://www.google.com/" target="_blank">
+              google - search engine
+            </a>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- modal -->
+    <div class="overlay">
+      <div class="modal">
+        <div class="title">
+          <h4>Add Bookmark</h4>
+          <span id="closeModal">✖︎</span>
+        </div>
+
+        <form action="#">
+          <label for="name">Website name</label> <br />
+          <input type="text" id="name" autofocus />
+          <small class="error" id="errName">Tên không được để trống</small>
+          <br /><br />
+
+          <label for="name">Website URL</label> <br />
+          <input type="text" id="url" />
+          <small class="error" id="errUrl">Url không được để trống</small>
+          <br /><br />
+
+          <button type="submit" id="btnSave">Save</button>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script src="ss35_lt2.js"></script>
+</html>

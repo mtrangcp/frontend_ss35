@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(245, 165, 245);
+}
+
+.container {
+    width: 900px;
+    height: 100vh;
+    margin: auto;
+}
+
+.btnAdd {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: black;
+    color: #fff;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.btnAdd:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.listData {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.item {
+    width: 49%;
+    background-color: black;
+    color: #fff;
+    padding: 4px 16px 10px 16px;
+}
+
+.item .item-data {
+    width: fit-content;
+    margin: auto;
+}
+
+.item .item-data a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.item .item-data a:hover{
+    cursor: pointer;
+    opacity: 0.6;
+    font-size: 17px;
+}
+
+.item .icon-close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-close span:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+#closeModal{
+    padding: 0 10px;
+}
+
+.error{
+    color: red;
+    display: none;
+}
+
+#closeModal:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.overlay {
+    background-color: rgb(0, 0, 0, 0.5);
+    color: #fff;
+    position: fixed;
+    inset: 0;
+    display: none;
+}
+
+.modal {
+    width: 500px;
+    height: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    background-color: blueviolet;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+form {
+    background-color: aliceblue;
+    padding: 20px;
+    color: blueviolet;
+}
+
+input {
+    width: 100%;
+    border: 1px solid blueviolet;
+    height: 26px;
+    border-radius: 5px;
+    padding: 10px 4px;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid blueviolet;
+}
+
+#btnSave {
+    background-color: blueviolet;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    padding: 5px 30px;
+}
+
+#btnSave:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

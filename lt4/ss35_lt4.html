@@ -72,7 +72,7 @@
         let htmls = result.map((item, index) => {
           return `
                 <tr>
-                    <td>${item.id}</td>
+                    <td>${(currPage - 1) * totalPerPage + index + 1}</td>
                     <td>${item.name}</td>
                     <td>${item.role}</td>
                 </tr>
